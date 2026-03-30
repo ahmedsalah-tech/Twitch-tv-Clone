@@ -4,4 +4,4 @@ export const validateAvatarUrl = (url: string) => {
   return regex.test(url);
 };
 
-export const avatarUrlValidationMessage = "Please enter a valid URL";
+export const avatarUrlValidationMessage = 'Please enter a valid URL';

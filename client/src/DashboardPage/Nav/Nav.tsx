@@ -5,24 +5,24 @@ import { useUserDetails } from '../../shared/hooks';
 
 const NavLogo = () => {
   return (
-    <div className='nav-logo-container'>
-      <img className='nav-logo' width='100%' height='100%' src={logo} />
+    <div className="nav-logo-container">
+      <img className="nav-logo" width="100%" height="100%" src={logo} />
     </div>
-  ); 
-}
+  );
+};
 
 type NavButtonProps = {
   text: string;
   onClickHandler: () => void;
-}
+};
 
 const NavButton = ({ text, onClickHandler }: NavButtonProps) => {
   return (
-    <span className='nav-button' onClick={onClickHandler}>
+    <span className="nav-button" onClick={onClickHandler}>
       {text}
     </span>
-  )
-}
+  );
+};
 
 export const Nav = () => {
   const { isLogged, logout } = useUserDetails();
@@ -46,20 +46,22 @@ export const Nav = () => {
   };
 
   return (
-    <div className='nav-container'>
+    <div className="nav-container">
       <NavLogo />
-      <div className='nav-buttons-container'>
-        <NavButton text='Browse' onClickHandler={handleNavigateToChannels} />
+      <div className="nav-buttons-container">
+        <NavButton text="Browse" onClickHandler={handleNavigateToChannels} />
         {!isLogged ? (
-        <NavButton text='Login' onClickHandler={handleNavigateToAuth} />
+          <NavButton text="Login" onClickHandler={handleNavigateToAuth} />
         ) : (
           <div>
-            <NavButton text='My Account' onClickHandler={handleNavigateToSettings} />
-            <NavButton text='Logout' onClickHandler={handleLogout} />
+            <NavButton
+              text="My Account"
+              onClickHandler={handleNavigateToSettings}
+            />
+            <NavButton text="Logout" onClickHandler={handleLogout} />
           </div>
         )}
       </div>
     </div>
-  )
-}
-
+  );
+};

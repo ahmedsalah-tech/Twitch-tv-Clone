@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export const Chat = () => {
-  return (
-    <div className='chat-section'></div>
-  )
+  return <div className="chat-section"></div>;
 };

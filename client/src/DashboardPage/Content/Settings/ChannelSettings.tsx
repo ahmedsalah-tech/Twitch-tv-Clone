@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   titleValidationMessage,
   usernameValidationMessage,
@@ -8,33 +8,33 @@ import {
   validateAvatarUrl,
   validateTitle,
   validateDescription,
-} from "../../../shared/validators";
-import { Input } from "../../../shared/components";
+} from '../../../shared/validators';
+import { Input } from '../../../shared/components';
 
 const inputs = [
   {
-    field: "username",
-    label: "Username",
+    field: 'username',
+    label: 'Username',
     validationMessage: usernameValidationMessage,
-    type: "text",
+    type: 'text',
   },
   {
-    field: "title",
-    label: "Title",
+    field: 'title',
+    label: 'Title',
     validationMessage: titleValidationMessage,
-    type: "text",
+    type: 'text',
   },
   {
-    field: "avatarUrl",
-    label: "Avatar Url",
+    field: 'avatarUrl',
+    label: 'Avatar Url',
     validationMessage: avatarUrlValidationMessage,
-    type: "text",
+    type: 'text',
   },
   {
-    field: "description",
-    label: "Description",
+    field: 'description',
+    label: 'Description',
     validationMessage: descriptionValidationMessage,
-    type: "text",
+    type: 'text',
     textarea: true,
   },
 ] as const;
@@ -54,7 +54,10 @@ interface ChannelSettingsProps {
   }) => void;
 }
 
-export const ChannelSettings = ({ settings, saveSettings }: ChannelSettingsProps) => {
+export const ChannelSettings = ({
+  settings,
+  saveSettings,
+}: ChannelSettingsProps) => {
   const [formState, setFormState] = useState({
     title: {
       isValid: validateTitle(settings.title),
@@ -78,10 +81,7 @@ export const ChannelSettings = ({ settings, saveSettings }: ChannelSettingsProps
     },
   });
 
-  const handleInputValueChange = (
-    value: string,
-    field: string
-  ) => {
+  const handleInputValueChange = (value: string, field: string) => {
     setFormState((prevState) => ({
       ...prevState,
       [field]: {
@@ -91,23 +91,20 @@ export const ChannelSettings = ({ settings, saveSettings }: ChannelSettingsProps
     }));
   };
 
-  const handleInputValidationOnBlur = (
-    value: string,
-    field: string
-  ) => {
+  const handleInputValidationOnBlur = (value: string, field: string) => {
     let isValid = false;
 
     switch (field) {
-      case "username":
+      case 'username':
         isValid = validateUsername(value);
         break;
-      case "avatarUrl":
+      case 'avatarUrl':
         isValid = validateAvatarUrl(value);
         break;
-      case "title":
+      case 'title':
         isValid = validateTitle(value);
         break;
-      case "description":
+      case 'description':
         isValid = validateDescription(value);
         break;
       default:
@@ -139,10 +136,10 @@ export const ChannelSettings = ({ settings, saveSettings }: ChannelSettingsProps
     !formState.username.isValid ||
     !formState.title.isValid ||
     !formState.description.isValid ||
-    !formState.avatarUrl.isValid
+    !formState.avatarUrl.isValid;
 
   return (
-    <form className='settings-form'>
+    <form className="settings-form">
       {inputs.map((input) => (
         <Input
           key={input.field}
@@ -154,13 +151,12 @@ export const ChannelSettings = ({ settings, saveSettings }: ChannelSettingsProps
           showErrorMessage={formState[input.field].showError}
           validationMessage={input.validationMessage}
           type={input.type}
-          textarea={"textarea" in input ? input.textarea : undefined}
+          textarea={'textarea' in input ? input.textarea : undefined}
         />
       ))}
       <button onClick={handleFormSubmit} disabled={isSubmitButtonDisabled}>
         Save Changes
       </button>
     </form>
-  )
+  );
 };
-

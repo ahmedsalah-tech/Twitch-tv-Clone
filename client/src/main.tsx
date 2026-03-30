@@ -11,9 +11,9 @@ createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <App>
       <Routes>
-        <Route path='/auth' element={<AuthPage />} />
-        <Route path='/*' element={<DashboardPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/*" element={<DashboardPage />} />
       </Routes>
     </App>
   </BrowserRouter>
-)
+);

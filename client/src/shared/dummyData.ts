@@ -1,30 +1,30 @@
 export const dummyChannels = [
   {
     id: 1,
-    title: "Ahmed",
+    title: 'Ahmed',
     avatarUrl: null,
-    username: "Ahmed",
+    username: 'Ahmed',
     isOnline: false,
   },
   {
     id: 2,
-    title: "Omar",
+    title: 'Omar',
     avatarUrl: null,
-    username: "Omar",
+    username: 'Omar',
     isOnline: true,
   },
   {
     id: 3,
-    title: "Mohammed",
+    title: 'Mohammed',
     avatarUrl: null,
-    username: "Mohammed",
+    username: 'Mohammed',
     isOnline: false,
   },
   {
     id: 4,
-    title: "Yahiya",
+    title: 'Yahiya',
     avatarUrl: null,
-    username: "Yahiya",
+    username: 'Yahiya',
     isOnline: false,
   },
 ];

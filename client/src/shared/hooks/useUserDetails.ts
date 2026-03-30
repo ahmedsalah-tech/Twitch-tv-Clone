@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { logout as logoutHandler } from '../utils';
 
 const getUserDetails = () => {
-  const userDetails = localStorage.getItem("user");
+  const userDetails = localStorage.getItem('user');
   if (userDetails) {
     return JSON.parse(userDetails);
   }
@@ -15,11 +15,11 @@ export const useUserDetails = () => {
 
   const logout = () => {
     logoutHandler();
-  }
+  };
 
   return {
     isLogged: Boolean(userDetails),
-    username: userDetails?.username ? userDetails.username : "Guest",
+    username: userDetails?.username ? userDetails.username : 'Guest',
     logout,
   };
 };

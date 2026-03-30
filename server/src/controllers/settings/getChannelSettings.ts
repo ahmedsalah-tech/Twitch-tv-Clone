@@ -1,43 +1,43 @@
 import User from '../../models/User.ts';
 
 interface ChannelDetails {
-    _id: string;
-    title: string;
-    description: string;
-    avatarUrl: string;
-    streamKey: string;
+  _id: string;
+  title: string;
+  description: string;
+  avatarUrl: string;
+  streamKey: string;
 }
 
 interface UserDetails {
-    username: string;
-    channel: ChannelDetails;
+  username: string;
+  channel: ChannelDetails;
 }
 
 export const getChannelSettings = async (req: any, res: any) => {
-    try {
-        const { userId } = req.user;
+  try {
+    const { userId } = req.user;
 
-        const userData = await User.findById(userId, {
-            channel: 1,
-            username: 1,
-        }).populate<"channel">("channel");
+    const userData = await User.findById(userId, {
+      channel: 1,
+      username: 1,
+    }).populate<'channel'>('channel');
 
-        if (!userData || !userData.channel) {
-            return res.status(404).send('User or channel not found');
-        }
-
-        const channelData = userData.channel as unknown as ChannelDetails;
-
-        return res.status(200).json({
-            id: channelData._id,
-            username: userData.username,
-            title: channelData.title,
-            description: channelData.description,
-            avatarUrl: channelData.avatarUrl,
-            streamKey: channelData.streamKey,
-        })
-    } catch (err) {
-        console.log(err);
-        return res.status(500).send('Something went wrong');
+    if (!userData || !userData.channel) {
+      return res.status(404).send('User or channel not found');
     }
+
+    const channelData = userData.channel as unknown as ChannelDetails;
+
+    return res.status(200).json({
+      id: channelData._id,
+      username: userData.username,
+      title: channelData.title,
+      description: channelData.description,
+      avatarUrl: channelData.avatarUrl,
+      streamKey: channelData.streamKey,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send('Something went wrong');
+  }
 };

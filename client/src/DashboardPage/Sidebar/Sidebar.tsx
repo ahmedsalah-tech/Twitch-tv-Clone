@@ -1,20 +1,20 @@
-import React from "react";
-import { type Channel } from "../../types/types";
+import React from 'react';
+import { type Channel } from '../../types/types';
 
 const followedChannels = [
   {
     id: 1,
-    username: "Ahmed",
+    username: 'Ahmed',
     isOnline: false,
   },
   {
     id: 2,
-    username: "Mohammed",
+    username: 'Mohammed',
     isOnline: true,
   },
   {
     id: 3,
-    username: "Sarah",
+    username: 'Sarah',
     isOnline: false,
   },
 ];
@@ -35,10 +35,10 @@ export const Sidebar = ({ channels }: { channels: Channel[] }) => {
             <span
               className="sidebar-list-status"
               style={{
-                color: channel.isOnline ? "green" : "red",
+                color: channel.isOnline ? 'green' : 'red',
               }}
             >
-              {channel.isOnline ? "Online" : "Offline"}
+              {channel.isOnline ? 'Online' : 'Offline'}
             </span>
           </div>
         );

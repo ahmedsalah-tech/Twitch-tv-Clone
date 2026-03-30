@@ -14,7 +14,7 @@ export const DashboardPage = () => {
 
   useEffect(() => {
     getChannels(isLogged);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogged]);
 
   if (isFetching) {
@@ -25,7 +25,7 @@ export const DashboardPage = () => {
     <div className="dashboard-container">
       <Nav />
       {isLogged && <Sidebar channels={followedChannels || []} />}
-      <Content channels={allChannels || []} getChannels={getChannels}/>
+      <Content channels={allChannels || []} getChannels={getChannels} />
     </div>
   );
 };

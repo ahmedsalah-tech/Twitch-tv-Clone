@@ -1,9 +1,9 @@
 export const validateUsername = (username: string): boolean => {
-    //username should have between 3 to 8 characters without spaces
-    const regex = /^\S{3,8}$/;
+  //username should have between 3 to 8 characters without spaces
+  const regex = /^\S{3,8}$/;
 
-    return regex.test(username);
+  return regex.test(username);
 };
 
-export const usernameValidationMessage = 
-'Username should be between 3 and 8 characters. No spaces are allowed.';
+export const usernameValidationMessage =
+  'Username should be between 3 and 8 characters. No spaces are allowed.';

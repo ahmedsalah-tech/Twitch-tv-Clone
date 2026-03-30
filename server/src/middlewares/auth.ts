@@ -4,28 +4,33 @@ import type { Request, Response, NextFunction } from 'express';
 const config = process.env;
 
 interface AuthRequest extends Request {
-    user?: any;
+  user?: any;
 }
 
-export const verifyToken = (req: AuthRequest, res: Response, next: NextFunction) => {
-    let token = req.body?.token || req.query.token || req.headers['authorization'];
+export const verifyToken = (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  let token =
+    req.body?.token || req.query.token || req.headers['authorization'];
 
-    if (!token) {
-        return res.status(401).send('A token is required for authentication');
-    }
+  if (!token) {
+    return res.status(401).send('A token is required for authentication');
+  }
 
-    if (!config.TOKEN_KEY) {
-        return res.status(500).send('Server configuration error');
-    }
+  if (!config.TOKEN_KEY) {
+    return res.status(500).send('Server configuration error');
+  }
 
-    try {
-        token = token.replace(/^Bearer\s+/, "");
-        const decoded =  jwt.verify(token, config.TOKEN_KEY);
+  try {
+    token = token.replace(/^Bearer\s+/, '');
+    const decoded = jwt.verify(token, config.TOKEN_KEY);
 
-        req.user = decoded;
-    } catch (err) {
-        return res.status(401).send('Invalid Token');
-    }
+    req.user = decoded;
+  } catch (err) {
+    return res.status(401).send('Invalid Token');
+  }
 
-    return next();
+  return next();
 };

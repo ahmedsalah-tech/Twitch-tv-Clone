@@ -1,21 +1,21 @@
 {
-	"name": "rtmp-server",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"start": "ts-node ./index.ts",
-		"build": "tsc"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"type": "module",
-	"devDependencies": {
-		"@types/node": "^25.5.0",
-		"@types/node-media-server": "^2.3.7",
-		"node-media-server": "^2.6.2",
-		"ts-node": "^10.9.2",
-		"typescript": "^6.0.2"
-	}
+  "name": "rtmp-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./index.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@types/node-media-server": "^2.3.7",
+    "node-media-server": "^2.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  }
 }

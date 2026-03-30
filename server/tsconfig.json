@@ -1,17 +1,17 @@
 {
-    "compilerOptions": {
-        "target": "es2016",
-        "jsx": "preserve",
-        "module": "commonjs",
-        "allowImportingTsExtensions": true,
-        "allowJs": true,
-        "outDir": "./dist",
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "noEmit": true,
-        "skipLibCheck": true
-    },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "dist", "client", "rtmp-server"]
+  "compilerOptions": {
+    "target": "es2016",
+    "jsx": "preserve",
+    "module": "commonjs",
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "client", "rtmp-server"]
 }

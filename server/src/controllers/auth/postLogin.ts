@@ -1,6 +1,6 @@
-import User from "../../models/User.ts";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import User from '../../models/User.ts';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export const postLogin = async (req: any, res: any) => {
   try {
@@ -22,7 +22,7 @@ export const postLogin = async (req: any, res: any) => {
         process.env.TOKEN_KEY as string,
         // addtional config
         {
-          expiresIn: "10h",
+          expiresIn: '10h',
         }
       );
 
@@ -36,8 +36,8 @@ export const postLogin = async (req: any, res: any) => {
       });
     }
 
-    return res.status(400).send("Invalid credentials. Please try again");
+    return res.status(400).send('Invalid credentials. Please try again');
   } catch (err) {
-    return res.status(500).send("Something went wrong. Please try again.");
+    return res.status(500).send('Something went wrong. Please try again.');
   }
 };

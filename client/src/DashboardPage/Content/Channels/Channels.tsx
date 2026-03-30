@@ -1,6 +1,6 @@
-import React from "react";
-import { ChannelCard } from "./ChannelCard";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { ChannelCard } from './ChannelCard';
+import { useNavigate } from 'react-router-dom';
 // import { dummyChannels } from "../../../shared/dummyData";
 
 export const Channels = ({

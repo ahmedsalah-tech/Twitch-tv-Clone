@@ -1,5 +1,5 @@
 import dns from 'dns';
-dns.setServers(['8.8.8.8', '8.8.4.4']);  // Fix for ISP DNS blocking MongoDB SRV lookups
+dns.setServers(['8.8.8.8', '8.8.4.4']); // Fix for ISP DNS blocking MongoDB SRV lookups
 
 import express from 'express';
 import http from 'http';
@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-	return res.send('Hello, here is your server');
+  return res.send('Hello, here is your server');
 });
 
 app.use('/api/auth', authRoutes);
@@ -32,13 +32,13 @@ app.use('/api/settings', settingsRoutes);
 const server = http.createServer(app);
 
 mongoose
-	.connect(process.env.MONGO_URI as string)
-	.then(() => {
-		server.listen(PORT, () => {
-			console.log(`Server is listening ${PORT}`);
-		});
-	})
-	.catch((err) => {
-		console.log('Database Connection Failed, Server is not started!');
-		console.log(err);
-	});
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`Server is listening ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log('Database Connection Failed, Server is not started!');
+    console.log(err);
+  });

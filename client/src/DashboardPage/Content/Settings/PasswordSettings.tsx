@@ -1,26 +1,27 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   passwordValidationMessage,
   validatePassword,
-} from "../../../shared/validators";
-import { Input } from "../../../shared/components";
-import type { updatePasswordFormState, InputDefinition } from "../../../types/types";
-import { usePasswordChange } from "../../../shared/hooks";
-
-
+} from '../../../shared/validators';
+import { Input } from '../../../shared/components';
+import type {
+  updatePasswordFormState,
+  InputDefinition,
+} from '../../../types/types';
+import { usePasswordChange } from '../../../shared/hooks';
 
 const inputs: InputDefinition[] = [
   {
-    field: "password",
-    label: "Current password",
+    field: 'password',
+    label: 'Current password',
     validationMessage: passwordValidationMessage,
-    type: "password",
+    type: 'password',
   },
   {
-    field: "newPassword",
-    label: "New password",
+    field: 'newPassword',
+    label: 'New password',
     validationMessage: passwordValidationMessage,
-    type: "password",
+    type: 'password',
   },
 ];
 
@@ -29,16 +30,16 @@ export const PasswordSettings = () => {
     password: {
       isValid: false,
       showError: false,
-      value: "",
+      value: '',
     },
     newPassword: {
       isValid: false,
       showError: false,
-      value: "",
+      value: '',
     },
   });
 
-  const { changePassword } = usePasswordChange(); 
+  const { changePassword } = usePasswordChange();
 
   const handleInputValueChange = (value: string, field: string) => {
     setFormState((prevState) => ({
@@ -50,10 +51,7 @@ export const PasswordSettings = () => {
     }));
   };
 
-  const handleInputValidationOnBlur = (
-    value: string,
-    field: string
-  ) => {
+  const handleInputValidationOnBlur = (value: string, field: string) => {
     const isValid = validatePassword(value);
 
     setFormState((prevState) => ({

@@ -1,24 +1,37 @@
 import express from 'express';
 import ExpressValidation from 'express-joi-validation';
 import Joi from 'joi';
-import { getChannelDetails, getChannels, postFollowChannel, getFollowedChannels } from '../controllers/controllers.ts';
+import {
+  getChannelDetails,
+  getChannels,
+  postFollowChannel,
+  getFollowedChannels,
+} from '../controllers/controllers.ts';
 import { verifyToken } from '../middlewares/auth.ts';
 
-const   router = express.Router();
+const router = express.Router();
 
 const channelDetailsSchema = Joi.object({
-    channelId: Joi.string().required(),
+  channelId: Joi.string().required(),
 });
 
 const validator = ExpressValidation.createValidator({});
 
 router.get('/followed', verifyToken, getFollowedChannels);
 
-router.post('/follow', verifyToken, validator.body(channelDetailsSchema), postFollowChannel);
- 
-router.get('/:channelId', validator.params(channelDetailsSchema), getChannelDetails);
+router.post(
+  '/follow',
+  verifyToken,
+  validator.body(channelDetailsSchema),
+  postFollowChannel
+);
+
+router.get(
+  '/:channelId',
+  validator.params(channelDetailsSchema),
+  getChannelDetails
+);
 
 router.get('/', getChannels);
 
 export default router;
-

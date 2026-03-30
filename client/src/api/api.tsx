@@ -1,26 +1,37 @@
 import axios, { isAxiosError } from 'axios';
 import type { AxiosResponse } from 'axios';
-import type { ChangePasswordData, ChangePasswordSuccessResponse, LoginData, ErrorResponse, LoginSuccessResponse, RegisterData, RegisterSuccessResponse, ChannelSettings, FollowedChannelsResponse, FollowChannelResponse } from '../types/types';
+import type {
+  ChangePasswordData,
+  ChangePasswordSuccessResponse,
+  LoginData,
+  ErrorResponse,
+  LoginSuccessResponse,
+  RegisterData,
+  RegisterSuccessResponse,
+  ChannelSettings,
+  FollowedChannelsResponse,
+  FollowChannelResponse,
+} from '../types/types';
 
 const apiClient = axios.create({
-    baseURL: "http://localhost:5002/api",
-    timeout: 10000,
+  baseURL: 'http://localhost:5002/api',
+  timeout: 10000,
 });
 
 apiClient.interceptors.request.use(
-    (config) => {
-        const userDetails = localStorage.getItem('user');
+  (config) => {
+    const userDetails = localStorage.getItem('user');
 
-        if (userDetails) {
-            const token = JSON.parse(userDetails).token;
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-
-        return config;
-    },
-    (err) => {
-        return Promise.reject(err);
+    if (userDetails) {
+      const token = JSON.parse(userDetails).token;
+      config.headers.Authorization = `Bearer ${token}`;
     }
+
+    return config;
+  },
+  (err) => {
+    return Promise.reject(err);
+  }
 );
 
 export const login = async (
@@ -36,9 +47,7 @@ export const login = async (
       };
     }
     // If it's not an Axios error, create a generic one to match the type
-    const genericError = new axios.AxiosError(
-      'An unexpected error occurred.'
-    );
+    const genericError = new axios.AxiosError('An unexpected error occurred.');
     return {
       error: true,
       exception: genericError as ErrorResponse['exception'],
@@ -50,7 +59,10 @@ export const register = async (
   data: RegisterData
 ): Promise<AxiosResponse<RegisterSuccessResponse> | ErrorResponse> => {
   try {
-    return await apiClient.post<RegisterSuccessResponse>('/auth/register', data);
+    return await apiClient.post<RegisterSuccessResponse>(
+      '/auth/register',
+      data
+    );
   } catch (exception) {
     if (isAxiosError(exception)) {
       return {
@@ -58,9 +70,7 @@ export const register = async (
         exception: exception as ErrorResponse['exception'],
       };
     }
-    const genericError = new axios.AxiosError(
-      'An unexpected error occurred.'
-    );
+    const genericError = new axios.AxiosError('An unexpected error occurred.');
     return {
       error: true,
       exception: genericError as ErrorResponse['exception'],
@@ -68,7 +78,9 @@ export const register = async (
   }
 };
 
-export const getChannelSettings = async (): Promise<AxiosResponse<ChannelSettings> | ErrorResponse> => {
+export const getChannelSettings = async (): Promise<
+  AxiosResponse<ChannelSettings> | ErrorResponse
+> => {
   try {
     return await apiClient.get<ChannelSettings>('/settings/channel');
   } catch (exception) {
@@ -78,9 +90,7 @@ export const getChannelSettings = async (): Promise<AxiosResponse<ChannelSetting
         exception: exception as ErrorResponse['exception'],
       };
     }
-    const genericError = new axios.AxiosError(
-      'An unexpected error occurred.'
-    );
+    const genericError = new axios.AxiosError('An unexpected error occurred.');
     return {
       error: true,
       exception: genericError as ErrorResponse['exception'],
@@ -100,9 +110,7 @@ export const updateChannelSettings = async (
         exception: exception as ErrorResponse['exception'],
       };
     }
-    const genericError = new axios.AxiosError(
-      'An unexpected error occurred.'
-    );
+    const genericError = new axios.AxiosError('An unexpected error occurred.');
     return {
       error: true,
       exception: genericError as ErrorResponse['exception'],
@@ -114,7 +122,10 @@ export const changePassword = async (
   data: ChangePasswordData
 ): Promise<AxiosResponse<ChangePasswordSuccessResponse> | ErrorResponse> => {
   try {
-    return await apiClient.patch<ChangePasswordSuccessResponse>('/settings/password', data);
+    return await apiClient.patch<ChangePasswordSuccessResponse>(
+      '/settings/password',
+      data
+    );
   } catch (exception) {
     if (isAxiosError(exception)) {
       return {
@@ -122,9 +133,7 @@ export const changePassword = async (
         exception: exception as ErrorResponse['exception'],
       };
     }
-    const genericError = new axios.AxiosError(
-      'An unexpected error occurred.'
-    );
+    const genericError = new axios.AxiosError('An unexpected error occurred.');
     return {
       error: true,
       exception: genericError as ErrorResponse['exception'],
@@ -132,7 +141,9 @@ export const changePassword = async (
   }
 };
 
-export const getFollowedChannels = async (): Promise<AxiosResponse<FollowedChannelsResponse> | ErrorResponse> => {
+export const getFollowedChannels = async (): Promise<
+  AxiosResponse<FollowedChannelsResponse> | ErrorResponse
+> => {
   try {
     return await apiClient.get<FollowedChannelsResponse>('/channels/followed');
   } catch (exception) {
@@ -142,9 +153,7 @@ export const getFollowedChannels = async (): Promise<AxiosResponse<FollowedChann
         exception: exception as ErrorResponse['exception'],
       };
     }
-    const genericError = new axios.AxiosError(
-      'An unexpected error occurred.'
-    );
+    const genericError = new axios.AxiosError('An unexpected error occurred.');
     return {
       error: true,
       exception: genericError as ErrorResponse['exception'],
@@ -162,9 +171,7 @@ export const getChannels = async () => {
         exception: exception as ErrorResponse['exception'],
       };
     }
-    const genericError = new axios.AxiosError(
-      'An unexpected error occurred.'
-    );
+    const genericError = new axios.AxiosError('An unexpected error occurred.');
     return {
       error: true,
       exception: genericError as ErrorResponse['exception'],
@@ -182,9 +189,7 @@ export const getChannelDetails = async (channelId: string) => {
         exception: exception as ErrorResponse['exception'],
       };
     }
-    const genericError = new axios.AxiosError(
-      'An unexpected error occurred.'
-    );
+    const genericError = new axios.AxiosError('An unexpected error occurred.');
     return {
       error: true,
       exception: genericError as ErrorResponse['exception'],
@@ -192,7 +197,9 @@ export const getChannelDetails = async (channelId: string) => {
   }
 };
 
-export const followChannel = async (channelId: string): Promise<AxiosResponse<FollowChannelResponse> | ErrorResponse> => {
+export const followChannel = async (
+  channelId: string
+): Promise<AxiosResponse<FollowChannelResponse> | ErrorResponse> => {
   try {
     return await apiClient.post<FollowChannelResponse>('/channels/follow', {
       channelId,
@@ -204,12 +211,10 @@ export const followChannel = async (channelId: string): Promise<AxiosResponse<Fo
         exception: exception as ErrorResponse['exception'],
       };
     }
-    const genericError = new axios.AxiosError(
-      'An unexpected error occurred.'
-    );
+    const genericError = new axios.AxiosError('An unexpected error occurred.');
     return {
       error: true,
       exception: genericError as ErrorResponse['exception'],
     };
   }
-}
+};

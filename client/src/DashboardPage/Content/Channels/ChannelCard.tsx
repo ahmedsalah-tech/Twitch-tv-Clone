@@ -1,8 +1,8 @@
-import React from "react";
-import type { ChannelCardProps } from "../../../types/types";
+import React from 'react';
+import type { ChannelCardProps } from '../../../types/types';
 
 const imageUrl =
-  "https://img.goodfon.com/wallpaper/nbig/a/a5/gta-gta-v-gta-5-rockstar-game-5652.webp";
+  'https://img.goodfon.com/wallpaper/nbig/a/a5/gta-gta-v-gta-5-rockstar-game-5652.webp';
 
 const ChannelAvatar = ({ url }: { url: string | null }) => {
   return (
@@ -19,7 +19,10 @@ export const ChannelCard = ({
   isOnline,
   avatarUrl,
   navigateToChannelHandler,
-}: ChannelCardProps & { id: string; navigateToChannelHandler: (id: string) => void; }) => {
+}: ChannelCardProps & {
+  id: string;
+  navigateToChannelHandler: (id: string) => void;
+}) => {
   const handleNavigate = () => {
     navigateToChannelHandler(id);
   };
@@ -31,9 +34,9 @@ export const ChannelCard = ({
       <span className="channels-card-text">{username}</span>
       <span
         className="channels-card-text"
-        style={{ color: isOnline ? "green" : "red" }}
+        style={{ color: isOnline ? 'green' : 'red' }}
       >
-        {isOnline ? "Online" : "Offline"}
+        {isOnline ? 'Online' : 'Offline'}
       </span>
     </div>
   );
