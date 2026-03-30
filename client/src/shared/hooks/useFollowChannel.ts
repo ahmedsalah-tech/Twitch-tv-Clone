@@ -1,25 +1,34 @@
-import toast from "react-hot-toast";
-import { followChannel as followChannelRequest } from "../../api";
-import { AxiosError } from "axios";
+import toast from 'react-hot-toast';
+import { followChannel as followChannelRequest } from '../../api';
+import { AxiosError } from 'axios';
 
 export const useFollowChannel = () => {
-    const followChannel = async (channelId: string, onSuccess: (followed: boolean) => void) => {
-        const responseData = await followChannelRequest(channelId);
+	const followChannel = async (
+		channelId: string,
+		onSuccess: (followed: boolean) => void
+	) => {
+		const responseData = await followChannelRequest(channelId);
 
-        if ('error' in responseData) {
-            const axiosError = responseData.exception as AxiosError;
-            const errorMessage = axiosError.response?.data as { message?: string };
-            return toast.error(
-                errorMessage?.message || 'Error occurred when trying to follow a channel'
-            )
-        };
+		if ('error' in responseData) {
+			const axiosError = responseData.exception as AxiosError;
+			const errorData = axiosError.response?.data as
+				| string
+				| { message?: string }
+				| undefined;
+			const errorMessage =
+				typeof errorData === 'string' ? errorData : errorData?.message;
 
-        toast.success('Channel followed successfully');
+			return toast.error(
+				errorMessage || 'Error occurred when trying to follow a channel'
+			);
+		}
 
-        onSuccess(true);
-    };
+		toast.success(responseData.data.message || 'Channel followed successfully');
 
-    return {
-        followChannel,
-    }
-}
+		onSuccess(true);
+	};
+
+	return {
+		followChannel,
+	};
+};

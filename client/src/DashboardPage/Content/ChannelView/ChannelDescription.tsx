@@ -4,14 +4,14 @@ import type { FollowButtonProps } from '../../../types/types';
 import { useUserDetails, useFollowChannel } from "../../../shared/hooks";
 
 
-const FollowButton = ({ channelId, getChannels , className }: FollowButtonProps & { className?: string }) => {
+const FollowButton = ({ channelId, getChannels }: FollowButtonProps ) => {
     const { followChannel } = useFollowChannel()
 
     const handleFollowChannel = () => {
         followChannel(channelId, getChannels)
     }
 
-    return <button onClick={handleFollowChannel} className={className}>Follow</button>
+    return <button onClick={handleFollowChannel} className={'channel-follow-button'}>Follow</button>
 }
 
 export const ChannelDescription: React.FC<Props> = ({
@@ -28,7 +28,7 @@ export const ChannelDescription: React.FC<Props> = ({
             <span className="channel-description-title">
                 {username}
                 <span>
-                    {isLogged && channelId && getChannels && <FollowButton className="channel-follow-button" channelId={channelId} getChannels={getChannels}/>}
+                    {isLogged && channelId && getChannels && ( <FollowButton channelId={channelId} getChannels={getChannels} /> )}
                 </span>
             </span>
             <span className="channel-description-subtitle">{title}</span>
