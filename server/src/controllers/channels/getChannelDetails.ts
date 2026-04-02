@@ -1,5 +1,14 @@
+import axios from 'axios';
 import User from '../../models/User.ts';
 import Channel from '../../models/Channel.ts';
+
+interface StreamInfo {
+  publisher?: Record<string, unknown> | null;
+}
+
+interface StreamsApiResponse {
+  live?: Record<string, StreamInfo>;
+}
 
 export const getChannelDetails = async (req: any, res: any) => {
   try {
@@ -15,7 +24,15 @@ export const getChannelDetails = async (req: any, res: any) => {
 
     const streamUrl = `http://localhost:8000/live/${channel.streamKey}.flv`;
 
-    const isOnline = false;
+    const requestData = await axios.get<StreamsApiResponse>(
+      'http://localhost:8000/api/streams'
+    );
+
+    const activeStreams = requestData.data;
+
+    const isOnline = Object.keys(activeStreams.live ?? {}).includes(
+      channel.streamKey
+    );
 
     return res.status(200).json({
       id: channel._id,
