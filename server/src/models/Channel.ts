@@ -11,7 +11,7 @@ const channelSchema = new Schema({
   title: { type: String, default: channelTitle },
   description: { type: String, default: channelDescription },
   avatarUrl: { type: String, default: 'none' },
-  streamKey: { type: String, default: uuid() },
+  streamKey: { type: String, default: uuid },
   messages: {
     type: [{ type: Schema.Types.ObjectId, ref: 'Message' }],
     default: [],

@@ -11,13 +11,17 @@ interface ChannelViewProps {
   getChannels?: () => void;
 }
 
-export const Stream = ({streamUrl: string}: {streamUrl: string}) => {
+interface StreamProps {
+  streamUrl: string;
+}
+
+export const Stream = ({ streamUrl }: StreamProps) => {
   return (
     <div className="channel-video-container">
       <ReactFlvPlayer
         width="100%"
         height="100%"
-        url="http://localhost:8000/live/fbd4855f-8cab-43f7-8a73-905ad5c1afe2"
+        url={streamUrl}
       />
     </div>
   );
@@ -42,12 +46,12 @@ export const ChannelView = ({ getChannels }: ChannelViewProps) => {
   return (
     <div className="channel-container">
       <div className="channel-video-description-section">
-        {/* <div className="channel-offline-placeholder">
+        <div className="channel-offline-placeholder">
           <span>Channel is offline</span>
-        </div> */}
-        <Stream 
+        </div>
+        {/* <Stream 
           streamUrl={channelDetails.streamUrl}
-        />
+        /> */}
         <ChannelDescription
           channelId={channelDetails.id}
           title={channelDetails.title}
