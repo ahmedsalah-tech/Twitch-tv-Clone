@@ -57,7 +57,7 @@ export const ChannelView = ({ getChannels }: ChannelViewProps) => {
           getChannels={getChannels}
         />
       </div>
-      <Chat />
+      <Chat channelId={channelDetails.id}/>
     </div>
   );
 };

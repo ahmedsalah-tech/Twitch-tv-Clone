@@ -1,3 +1,4 @@
+import { useChatHistory } from '../../../../shared/hooks';
 import Messages from './Messages';
 import { NewMessageInput } from './newMessageInput';
 
@@ -6,6 +7,9 @@ type ChatProps = {
 };
 
 export const Chat = ({ channelId }: ChatProps) => {
+
+  const {messages, sendMessage} = useChatHistory(channelId); 
+
   return (
     <div className="chat-section">
       <div className="chat-title-container">

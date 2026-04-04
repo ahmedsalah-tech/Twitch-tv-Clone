@@ -6,3 +6,4 @@ export { usePasswordChange } from './useChangePassword';
 export { useChannels } from './useChannels';
 export { useChannelDetails } from './useChannelDetails';
 export { useFollowChannel } from './useFollowChannel';
+export { useChatHistory } from './useChatHistory';

@@ -7,9 +7,14 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
+import User from './src/models/User.ts';
+import Channel from './src/models/Channel.ts';
+import Message from './src/models/Message.ts';
+
 import authRoutes from './src/routes/authRoutes.ts';
 import channelsRoutes from './src/routes/channelsRoutes.ts';
 import settingsRoutes from './src/routes/settingsRoutes.ts';
+import { registerSocketServer } from './src/io/io.ts';
 
 dotenv.config();
 
@@ -30,6 +35,8 @@ app.use('/api/channels', channelsRoutes);
 app.use('/api/settings', settingsRoutes);
 
 const server = http.createServer(app);
+
+registerSocketServer(server);
 
 mongoose
   .connect(process.env.MONGO_URI as string)
