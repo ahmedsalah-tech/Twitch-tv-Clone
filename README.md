@@ -14,11 +14,11 @@
 
 |                           Desktop Main Feed                           |                            Streamer Settings                             |                Live Channel (Stream + Chat)                 |
 | :-------------------------------------------------------------------: | :----------------------------------------------------------------------: | :---------------------------------------------------------: |
-|    ![Desktop View of Main Feed](./assets/main-dashboard.png)     | ![Streamer Dashboard with Stream Key](./assets/my-account-page.png) | ![Live Channel View](./assets/test.webp) |
+|    ![Desktop View of Main Feed](./assets/main-dashboard.png)     | ![Streamer Dashboard with Stream Key](./assets/my-account-page.png) | ![Live Channel View](./assets/channel-streaming-page.png) |
 |                            **Login Page**                             |                            **Register Page**                             |                   **OBS Streaming Setup**                   |
-|              ![Login Page](./assets/login-page.png)              |            ![Register Page](./assets/register-page.png)             |        ![OBS Setup](./assets/obs-streaming.png)        |
+|              ![Login Page](./screenshots/login-page.png)              |            ![Register Page](./screenshots/register-page.png)             |        ![OBS Setup](./screenshots/obs-streaming.png)        |
 |                      **Online Status Indicator**                      |                                                                          |                                                             |
-| ![Online Status Indicator](./assets/online-status-indicator.png) |                                                                          |                                                             |
+| ![Online Status Indicator](./screenshots/online-status-indicator.png) |                                                                          |                                                             |
 
 ## 🏗️ Architecture
 
