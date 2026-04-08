@@ -33,11 +33,15 @@ export const getChannels = async (req: Request, res: Response) => {
       }
     ).populate<{ channel: PopulatedChannel }>('channel');
 
-    const requestData = await axios.get<StreamsApiResponse>(
-      'http://localhost:8000/api/streams'
-    );
-
-    const activeStreams = requestData.data;
+    let activeStreams: StreamsApiResponse = {};
+    try {
+      const requestData = await axios.get<StreamsApiResponse>(
+        'http://localhost:8000/api/streams'
+      );
+      activeStreams = requestData.data;
+    } catch (err) {
+      console.warn('RTMP server is offline or unreachable.');
+    }
 
     const channels = users
       .filter((user) => user.channel && user.channel.isActive)

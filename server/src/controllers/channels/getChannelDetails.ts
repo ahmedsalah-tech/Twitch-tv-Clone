@@ -25,11 +25,15 @@ export const getChannelDetails = async (req: Request, res: Response) => {
 
     const streamUrl = `http://localhost:8000/live/${channel.streamKey}.flv`;
 
-    const requestData = await axios.get<StreamsApiResponse>(
-      'http://localhost:8000/api/streams'
-    );
-
-    const activeStreams = requestData.data;
+    let activeStreams: StreamsApiResponse = {};
+    try {
+      const requestData = await axios.get<StreamsApiResponse>(
+        'http://localhost:8000/api/streams'
+      );
+      activeStreams = requestData.data;
+    } catch (err) {
+      console.warn('RTMP server is offline or unreachable.');
+    }
 
     const isOnline = Object.keys(activeStreams.live ?? {}).includes(
       channel.streamKey
