@@ -1,4 +1,4 @@
-import { useState } from 'react'; 
+import { useState } from 'react';
 
 type NewMessageInputProps = {
   sendMessage: (message: string) => void;
@@ -13,9 +13,11 @@ export const NewMessageInput = ({ sendMessage }: NewMessageInputProps) => {
 
   const handleSendMessage = () => {
     // send message to the server
-
-    // after sending message, reset the value
-    setMessageContent('');
+    if (messageContent.trim().length > 0) {
+      sendMessage(messageContent);
+      // after sending message, reset the value
+      setMessageContent('');
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
